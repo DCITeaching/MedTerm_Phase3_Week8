@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCITH — W8 Pulmonology + Hematology | Phase 3 Rotation B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1e5a8c;
+    --blue-dark: #0f3a5c;
+    --blue-lite: #e3eef8;
+    --blue-glow: rgba(30, 90, 140, 0.15);
+    --purple: #6b21a8;
+    --purple-dark: #4a1578;
+    --purple-lite: #f3e8ff;
+    --navy: #1b3a6b;
+    --orange: #c05621;
+    --red: #991b1b;
+    --amber: #ca8a04;
+    --green: #166534;
+    --gold: #c49a2a;
+    --ink: #0f172a;
+    --paper: #fafaf7;
+    --line: #e2e8f0;
+    --gray: #64748b;
+    --gray-lite: #f1f5f9;
+    --yellow-bg: #fefce8;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue-dark) 100%);
+    color: white;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .topbar .logo { font-weight: 700; }
+  .topbar .phase { opacity: 0.85; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(165deg, var(--blue-lite) 0%, #f4f0fc 100%);
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 600;
+  }
+  .hero h1 .pulm { color: var(--blue-dark); }
+  .hero h1 .heme { color: var(--purple-dark); }
+  .hero p {
+    font-size: 19px;
+    max-width: 700px;
+    color: var(--gray);
+    margin-bottom: 36px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+  }
+  .stat {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--blue);
+  }
+  .stat:nth-child(2)::before { background: var(--purple); }
+  .stat:nth-child(3)::before { background: var(--orange); }
+  .stat:nth-child(4)::before { background: var(--gold); }
+  .stat .val {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat:nth-child(2) .val { color: var(--purple); }
+  .stat:nth-child(3) .val { color: var(--orange); }
+  .stat:nth-child(4) .val { color: var(--gold); }
+  .stat .lbl {
+    font-size: 13px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  /* ─── NAV TABS ─── */
+  .nav-tabs {
+    background: white;
+    border-bottom: 1px solid var(--line);
+    padding: 0 24px;
+    position: sticky;
+    top: 48px;
+    z-index: 90;
+    overflow-x: auto;
+    box-shadow: 0 1px 0 var(--line);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    min-width: max-content;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 18px 22px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--ink); background: var(--paper); }
+  .tab-btn.active { color: var(--blue-dark); border-bottom-color: var(--blue); }
+  .tab-btn .emoji { margin-right: 6px; }
+
+  /* ─── MAIN ─── */
+  main { max-width: 1200px; margin: 0 auto; padding: 48px 24px 100px; }
+  .panel { display: none; animation: fadeIn 0.3s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-head {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--blue);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .section-head .sub {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 700px;
+  }
+
+  /* ─── OVERVIEW ─── */
+  .return-banner {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .return-banner::before {
+    content: '↻';
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    font-size: 180px;
+    opacity: 0.08;
+    font-family: 'Fraunces', serif;
+  }
+  .return-banner .rb-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+  .return-banner h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .return-banner p {
+    font-size: 15px;
+    opacity: 0.9;
+    max-width: 650px;
+  }
+
+  .patient-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--blue);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-md);
+  }
+  .patient-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--blue-dark);
+    margin-bottom: 16px;
+  }
+  .patient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px 24px;
+    margin-top: 20px;
+  }
+  .pg-item .pg-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .pg-item .pg-val { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .vitals-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .vital-chip {
+    background: var(--gray-lite);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .vital-chip.bad { background: #fee2e2; color: var(--red); }
+  .vital-chip.warn { background: #fef3c7; color: var(--amber); }
+  .vital-chip.ok { background: #d1fae5; color: var(--green); }
+
+  .quote-box {
+    background: var(--blue-lite);
+    border-left: 4px solid var(--blue);
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin: 24px 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--blue-dark);
+    line-height: 1.5;
+  }
+
+  .week-goals {
+    background: var(--yellow-bg);
+    border: 2px solid var(--amber);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .week-goals h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .week-goals ul { list-style: none; padding: 0; }
+  .week-goals li {
+    padding: 8px 0 8px 30px;
+    position: relative;
+    font-size: 15px;
+  }
+  .week-goals li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .equity-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  .equity-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--blue-dark);
+    margin-bottom: 12px;
+  }
+  .equity-card p {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .equity-card p:last-child { margin-bottom: 0; }
+  .equity-card strong {
+    background: var(--yellow-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* ─── CONTENT TABLES ─── */
+  .content-section { margin-bottom: 48px; }
+  .content-section h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .content-section.pulm h3 { color: var(--blue-dark); }
+  .content-section.heme h3 { color: var(--purple-dark); }
+  .content-section .intro {
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+  }
+  .data-table th {
+    color: white;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .data-table.pulm th { background: var(--blue); }
+  .data-table.heme th { background: var(--purple); }
+  .data-table td {
+    padding: 14px 18px;
+    font-size: 15px;
+    border-top: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: var(--gray-lite); }
+  .data-table .term-cell { font-weight: 700; }
+  .data-table.pulm .term-cell { color: var(--blue-dark); }
+  .data-table.heme .term-cell { color: var(--purple-dark); }
+  .stage-ok { color: var(--green); font-weight: 700; }
+  .stage-mild { color: var(--amber); font-weight: 700; }
+  .stage-mod { color: var(--orange); font-weight: 700; }
+  .stage-sev { color: var(--red); font-weight: 800; background: #fee2e2; padding: 2px 8px; border-radius: 4px; }
+
+  /* Clinical highlight row */
+  .clinical-highlight {
+    background: var(--yellow-bg);
+    border-left: 4px solid var(--amber);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0 24px;
+    font-style: italic;
+    color: var(--navy);
+    font-size: 15px;
+  }
+
+  /* ─── TERMS ─── */
+  .terms-intro {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .terms-intro .ti-block {
+    padding-left: 16px;
+    border-left: 4px solid;
+  }
+  .terms-intro .ti-block.pulm { border-color: var(--blue); }
+  .terms-intro .ti-block.heme { border-color: var(--purple); }
+  .terms-intro .ti-block h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .terms-intro .ti-block.pulm h4 { color: var(--blue-dark); }
+  .terms-intro .ti-block.heme h4 { color: var(--purple-dark); }
+  .terms-intro .ti-block p { font-size: 14px; color: var(--gray); }
+
+  .terms-group { margin-bottom: 40px; }
+  .terms-group h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+  }
+  .terms-group.pulm h4 { color: var(--blue); border-color: var(--blue); }
+  .terms-group.heme h4 { color: var(--purple); border-color: var(--purple); }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .term-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 4px solid;
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .terms-group.pulm .term-card { border-left-color: var(--blue); }
+  .terms-group.heme .term-card { border-left-color: var(--purple); }
+  .term-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .term-card .t-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .terms-group.pulm .term-card .t-name { color: var(--blue-dark); }
+  .terms-group.heme .term-card .t-name { color: var(--purple-dark); }
+  .term-card .t-root {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .term-card .t-def {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .term-card .t-clinical {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--navy);
+    font-style: italic;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+  }
+
+  /* Distinction cards (thrombosis vs embolism, crackles vs wheeze) */
+  .distinction-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0 32px;
+  }
+  .distinction-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid;
+  }
+  .distinction-card.a { background: #f0f8ff; border-color: var(--blue); }
+  .distinction-card.b { background: #fff7ed; border-color: var(--orange); }
+  .distinction-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  .distinction-card.a h4 { color: var(--blue-dark); }
+  .distinction-card.b h4 { color: var(--orange); }
+  .distinction-card .dc-root {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+  .distinction-card .dc-def {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .distinction-card .dc-test {
+    background: white;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--navy);
+  }
+
+  /* ─── SOAP FOCUS ─── */
+  .soap-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .soap-row:last-child { border-bottom: none; }
+  .soap-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .soap-s .soap-letter { color: var(--navy); }
+  .soap-o .soap-letter { color: #1e4a8a; }
+  .soap-a .soap-letter { color: var(--orange); }
+  .soap-p .soap-letter { color: var(--green); }
+  .soap-body h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .soap-s .soap-body h4 { color: var(--navy); }
+  .soap-o .soap-body h4 { color: #1e4a8a; }
+  .soap-a .soap-body h4 { color: var(--orange); }
+  .soap-p .soap-body h4 { color: var(--green); }
+  .soap-body p { font-size: 15px; color: var(--ink); margin-bottom: 10px; }
+  .soap-terms { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .soap-term {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .soap-s .soap-term { background: #dbeafe; color: var(--navy); }
+  .soap-o .soap-term { background: #bfdbfe; color: #1e4a8a; }
+  .soap-a .soap-term { background: #fed7aa; color: var(--orange); }
+  .soap-p .soap-term { background: #bbf7d0; color: var(--green); }
+  .soap-term.heme { background: #e9d5ff; color: var(--purple-dark); }
+
+  /* ─── LAB PREP ─── */
+  .lab-callout {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lab-callout::before {
+    content: '🩸';
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 120px;
+    opacity: 0.15;
+  }
+  .lab-callout h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .lab-callout p {
+    font-size: 16px;
+    opacity: 0.95;
+    max-width: 650px;
+  }
+
+  .stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .station-card {
+    background: white;
+    border: 2px solid var(--line);
+    border-top: 6px solid;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .station-card.a { border-top-color: var(--blue); }
+  .station-card.b { border-top-color: var(--purple); }
+  .station-card.c { border-top-color: #1a7a6e; }
+  .station-card .st-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .station-card.a .st-badge { background: var(--blue-lite); color: var(--blue-dark); }
+  .station-card.b .st-badge { background: var(--purple-lite); color: var(--purple-dark); }
+  .station-card.c .st-badge { background: #e6f4f1; color: #0f4f46; }
+  .station-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .station-card.a h4 { color: var(--blue-dark); }
+  .station-card.b h4 { color: var(--purple-dark); }
+  .station-card.c h4 { color: #0f4f46; }
+  .station-card p { font-size: 14px; color: var(--gray); margin-bottom: 12px; line-height: 1.55; }
+  .station-card .st-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    font-weight: 700;
+  }
+
+  /* Safety warning block */
+  .safety-block {
+    background: #fee2e2;
+    border: 2px solid var(--red);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .safety-block h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .safety-block ul { list-style: none; padding: 0; }
+  .safety-block li {
+    padding: 6px 0 6px 28px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .safety-block li::before {
+    content: '⚠';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+  }
+
+  /* Resource cards */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .resource-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: block;
+  }
+  .resource-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .resource-card .rc-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .resource-card h5 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--blue-dark);
+    margin-bottom: 6px;
+  }
+  .resource-card p { font-size: 13px; color: var(--gray); }
+
+  /* Games link-out banner */
+  .games-redirect {
+    background: var(--ink);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .games-redirect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, var(--blue) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, var(--purple) 0%, transparent 40%);
+    opacity: 0.2;
+  }
+  .games-redirect > * { position: relative; }
+  .games-redirect h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .games-redirect h3 em {
+    font-style: italic;
+    color: #60a5fa;
+  }
+  .games-redirect p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+  .games-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: inherit;
+    transition: transform 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .games-btn:hover { transform: scale(1.05); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: #94a3b8;
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer .f-title {
+    font-family: 'Fraunces', serif;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 38px; }
+    .section-head h2 { font-size: 28px; }
+    .soap-row { grid-template-columns: 60px 1fr; gap: 12px; }
+    .soap-letter { font-size: 40px; }
+    .terms-intro { grid-template-columns: 1fr; }
+    .distinction-pair { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="topbar">
+  <div class="logo">DCITH · HS1B</div>
+  <div class="phase">Phase 3 · Week 8 · Pulm + Heme</div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Phase 3 · Rotation B · Vital Signs and Flow</div>
+    <h1>Week 8:<br><span class="pulm"><em>Pulmonology</em></span> <span style="color:var(--gray); font-weight: 600;">+</span> <span class="heme"><em>Hematology</em></span></h1>
+    <p>Ms. Carter is back — and she can't catch her breath. This week, the cardiac picture meets the lungs and the blood. You'll auscultate, you'll draw a CBC, and you'll write the SOAP note that ties last week to this one.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="val">13</div><div class="lbl">Pulm Terms</div></div>
+      <div class="stat"><div class="val">12</div><div class="lbl">Heme Terms</div></div>
+      <div class="stat"><div class="val">3</div><div class="lbl">Lab Stations</div></div>
+      <div class="stat"><div class="val">1</div><div class="lbl">Patient Returns</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav-tabs">
+  <div class="nav-inner">
+    <button class="tab-btn active" data-tab="overview"><span class="emoji">🫁</span>Overview</button>
+    <button class="tab-btn" data-tab="framework"><span class="emoji">📊</span>Clinical Framework</button>
+    <button class="tab-btn" data-tab="terms"><span class="emoji">📖</span>25 Terms</button>
+    <button class="tab-btn" data-tab="soap"><span class="emoji">📝</span>SOAP Focus</button>
+    <button class="tab-btn" data-tab="lab"><span class="emoji">🩸</span>Lab Prep</button>
+    <button class="tab-btn" data-tab="games"><span class="emoji">🎮</span>Games</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ─── OVERVIEW ─── -->
+<section class="panel active" id="overview">
+  <div class="section-head">
+    <div class="kicker">Monday · Grand Rounds</div>
+    <h2>Ms. Carter Returns</h2>
+    <div class="sub">Six days ago she was in cardiology clinic. Today she's in Urgent Care. Same patient, new systems.</div>
+  </div>
+
+  <div class="return-banner">
+    <div class="rb-eyebrow">↻ Patient Continuity</div>
+    <h3>The arrhythmia from W7 may explain what you're hearing in her lungs today.</h3>
+    <p>When the left heart fails to pump effectively, fluid backs up into the pulmonary vasculature. The crackles you'll auscultate at her lung bases are the sound of that backup. Clinical reasoning in this phase is longitudinal — you see the whole patient, not just today's chief complaint.</p>
+  </div>
+
+  <div class="patient-card">
+    <h3>DCITH Urgent Care · Exam Room 2</h3>
+    <div class="patient-grid">
+      <div class="pg-item"><div class="pg-label">Patient</div><div class="pg-val">Ms. Evelyn Carter</div></div>
+      <div class="pg-item"><div class="pg-label">MRN</div><div class="pg-val">00617 · Returning</div></div>
+      <div class="pg-item"><div class="pg-label">Age / Sex</div><div class="pg-val">58 · Female</div></div>
+      <div class="pg-item"><div class="pg-label">Last Seen</div><div class="pg-val">Cardiology · 6 days ago</div></div>
+      <div class="pg-item"><div class="pg-label">New Complaint</div><div class="pg-val">Dyspnea on exertion</div></div>
+      <div class="pg-item"><div class="pg-label">New Sign</div><div class="pg-val">Cyanosis · last night</div></div>
+      <div class="pg-item"><div class="pg-label">Cough</div><div class="pg-val">Productive · clear sputum</div></div>
+      <div class="pg-item"><div class="pg-label">Ankle Swelling</div><div class="pg-val">Bilateral · 3 days</div></div>
+    </div>
+    <div class="quote-box">"I can't catch my breath when I climb stairs, and my lips looked blue last night."</div>
+    <div class="vitals-row">
+      <div class="vital-chip warn">BP 148/90</div>
+      <div class="vital-chip bad">HR 110 irreg</div>
+      <div class="vital-chip bad">RR 26</div>
+      <div class="vital-chip bad">SpO₂ 88%</div>
+      <div class="vital-chip warn">Temp 37.4°C</div>
+    </div>
+  </div>
+
+  <div class="week-goals">
+    <h4>🎯 By Friday, you will be able to</h4>
+    <ul>
+      <li>Auscultate a set of lungs and distinguish crackles, wheeze, rhonchi, and stridor by characteristic and location.</li>
+      <li>Classify SpO₂ values using the hypoxia chart and state the correct clinical action for each range.</li>
+      <li>Read a basic CBC — flag abnormal RBC, WBC, Hgb, Hct, and platelet values against reference ranges.</li>
+      <li>Distinguish thrombosis from embolism, and crackles from wheeze — the two most-confused pairs of W8.</li>
+      <li>Perform a simulated venipuncture (standard + butterfly) and an infant heel stick using correct technique.</li>
+      <li>Document a dual-system SOAP note linking cardiac findings (W7) to respiratory + hematologic findings (W8).</li>
+    </ul>
+  </div>
+
+  <div class="equity-card">
+    <h3>Why this patient, why this ward</h3>
+    <p>Respiratory disease in DC tracks the same ward geography as cardiovascular disease. <strong>Asthma hospitalization rates for Black children in Ward 8 are roughly four times the rate in Ward 3</strong>. Iron-deficiency anemia — one of the things you'll see in Ms. Carter's CBC today — is also two to three times more common in our east-of-the-river wards than west.</p>
+    <p>These aren't accidents. They're the downstream effects of housing quality, environmental exposure, food access, and the specific history of medical neglect in specific neighborhoods. The vocabulary you learn this week is the vocabulary Ms. Carter's doctors use every day to help her. Learn it like she's someone you know.</p>
+  </div>
+</section>
+
+<!-- ─── CLINICAL FRAMEWORK ─── -->
+<section class="panel" id="framework">
+  <div class="section-head">
+    <div class="kicker">Wednesday · OR/Clinic Lab</div>
+    <h2>Lungs → Oxygen → Blood</h2>
+    <div class="sub">Three frameworks, one system. The heart pumps. The lungs oxygenate. The blood carries. If any one fails, the other two can't compensate.</div>
+  </div>
+
+  <div class="content-section pulm">
+    <h3>1. Breath Sounds — what you hear and what it means</h3>
+    <p class="intro">Six sounds. Six different stories about what's happening in the airways. Master the discontinuous/continuous distinction first — it's the easiest way in.</p>
+    <table class="data-table pulm">
+      <thead><tr><th>Sound</th><th>Character</th><th>Often Indicates</th></tr></thead>
+      <tbody>
+        <tr><td class="term-cell">Normal</td><td>Clear, smooth air movement bilaterally.</td><td>Healthy lungs — no intervention needed.</td></tr>
+        <tr><td class="term-cell">Crackles (rales)</td><td><strong>Discontinuous</strong> popping. Like velcro separating.</td><td>Fluid in alveoli (pulmonary edema, pneumonia).</td></tr>
+        <tr><td class="term-cell">Wheeze</td><td><strong>Continuous</strong> high-pitched whistle. Worse on expiration.</td><td>Narrowed airways (asthma, bronchospasm).</td></tr>
+        <tr><td class="term-cell">Rhonchi</td><td><strong>Continuous</strong> low-pitched rumbling. Often clears with cough.</td><td>Mucus in larger airways (bronchitis).</td></tr>
+        <tr><td class="term-cell">Stridor</td><td><strong>Continuous</strong> high-pitched, mostly on <strong>inspiration</strong>.</td><td>Upper airway obstruction — EMERGENCY.</td></tr>
+        <tr><td class="term-cell">Diminished</td><td>Quiet, hard to hear.</td><td>Atelectasis, pleural effusion, pneumothorax.</td></tr>
+      </tbody>
+    </table>
+    <div class="clinical-highlight">
+      → Ms. Carter has <strong>bilateral fine crackles</strong> at the lung bases. What does that suggest? Why is it tied to her W7 cardiac findings?
+    </div>
+  </div>
+
+  <div class="content-section pulm">
+    <h3>2. Pulse Oximetry — reading the number on the finger</h3>
+    <p class="intro">SpO₂ is non-invasive, bedside, instant. Every nurse on every shift documents it. Know the thresholds cold.</p>
+    <table class="data-table pulm">
+      <thead><tr><th>SpO₂ Range</th><th>Classification</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>95–100%</td><td><span class="stage-ok">Normal</span></td><td>Room air acceptable. Monitor.</td></tr>
+        <tr><td>91–94%</td><td><span class="stage-mild">Mild hypoxia</span></td><td>Consider supplemental O₂. Reassess in 15 min.</td></tr>
+        <tr><td>85–90%</td><td><span class="stage-mod">Moderate hypoxia</span></td><td>Supplemental O₂ via nasal cannula. Notify provider.</td></tr>
+        <tr><td>&lt; 85%</td><td><span class="stage-sev">Severe hypoxia</span></td><td>HIGH-FLOW O₂ or non-rebreather. EMERGENCY.</td></tr>
+      </tbody>
+    </table>
+    <div class="clinical-highlight">
+      → Ms. Carter's SpO₂ is 88%. What classification? What's your immediate action?
+    </div>
+  </div>
+
+  <div class="content-section heme">
+    <h3>3. CBC — the Complete Blood Count</h3>
+    <p class="intro">Your first blood panel. Five core components, one differential. Master the reference ranges and you can spot anemia, infection, and bleeding risk at a glance.</p>
+    <table class="data-table heme">
+      <thead><tr><th>Component</th><th>What It Measures</th><th>Normal Range (Adult)</th></tr></thead>
+      <tbody>
+        <tr><td class="term-cell">RBC / Erythrocytes</td><td>Oxygen-carrying red cells.</td><td>4.5–5.5 million / µL</td></tr>
+        <tr><td class="term-cell">Hemoglobin (Hgb)</td><td>Oxygen-binding protein in RBCs.</td><td>12–16 g/dL (F) · 14–18 (M)</td></tr>
+        <tr><td class="term-cell">Hematocrit (Hct)</td><td>% of blood made of RBCs.</td><td>36–46% (F) · 41–53% (M)</td></tr>
+        <tr><td class="term-cell">WBC / Leukocytes</td><td>Infection-fighting cells.</td><td>4,000–11,000 / µL</td></tr>
+        <tr><td class="term-cell">Platelets / Thrombocytes</td><td>Clotting cell fragments.</td><td>150,000–450,000 / µL</td></tr>
+      </tbody>
+    </table>
+    <div class="clinical-highlight">
+      → Ms. Carter's CBC shows three abnormal values: RBC 3.9, Hgb 10.4, Hct 32%. Together, this pattern has a name. What is it?
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3 style="color: var(--ink);">The Two Confused Pairs — don't mix these up</h3>
+    <p class="intro">These are the most common W8 mistakes every year. Get them right now, before the Boards.</p>
+
+    <div class="distinction-pair">
+      <div class="distinction-card a">
+        <h4>Thrombosis</h4>
+        <div class="dc-root">thromb/o (clot) + -osis (condition)</div>
+        <div class="dc-def">A clot that <strong>FORMS IN PLACE</strong> and stays put. Deep vein thrombosis (DVT) = clot in the deep veins of the leg.</div>
+        <div class="dc-test">Test: If the clot hasn't moved, it's thrombosis.</div>
+      </div>
+      <div class="distinction-card b">
+        <h4>Embolism</h4>
+        <div class="dc-root">embol/o (plug) + -ism</div>
+        <div class="dc-def">A clot that <strong>MOVES</strong> and lodges somewhere else. Pulmonary embolism = a clot traveled from somewhere (usually a DVT) to the lungs.</div>
+        <div class="dc-test">Test: Could it have traveled? If yes = embolism.</div>
+      </div>
+    </div>
+
+    <div class="distinction-pair">
+      <div class="distinction-card a">
+        <h4>Crackles (rales)</h4>
+        <div class="dc-root">Onomatopoeia — the sound</div>
+        <div class="dc-def"><strong>DISCONTINUOUS</strong> popping sounds. Like velcro pulling apart. Individual pops, not continuous.</div>
+        <div class="dc-test">Test: Can you count individual pops? It's crackles.</div>
+      </div>
+      <div class="distinction-card b">
+        <h4>Wheeze</h4>
+        <div class="dc-root">Middle English — to breathe hard</div>
+        <div class="dc-def"><strong>CONTINUOUS</strong> high-pitched whistle. Sustained note, usually worse on expiration.</div>
+        <div class="dc-test">Test: Is it a sustained whistle? It's wheeze.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TERMS ─── -->
+<section class="panel" id="terms">
+  <div class="section-head">
+    <div class="kicker">Formulary · Phase 3 · Week 8</div>
+    <h2>The 25 Terms</h2>
+    <div class="sub">Five groups of five. Groups A–C cover pulmonology (blue). Groups D–E cover hematology (purple).</div>
+  </div>
+
+  <div class="terms-intro">
+    <div class="ti-block pulm">
+      <h4>Pulmonology (Groups A–C)</h4>
+      <p>13 terms covering airway anatomy, breath sounds and respiratory function, and oxygenation pathology. These are the words you'll use to document Ms. Carter's lung exam.</p>
+    </div>
+    <div class="ti-block heme">
+      <h4>Hematology (Groups D–E)</h4>
+      <p>12 terms covering blood components, the CBC, and clotting pathology. These are the words you'll use to document Ms. Carter's lab draw.</p>
+    </div>
+  </div>
+
+  <div id="terms-container"></div>
+</section>
+
+<!-- ─── SOAP FOCUS ─── -->
+<section class="panel" id="soap">
+  <div class="section-head">
+    <div class="kicker">EHR Entry 6 · Wednesday</div>
+    <h2>SOAP Focus: Ms. Carter's Return Visit</h2>
+    <div class="sub">Same SOAP structure as W7, but documenting two systems this time. Pulmonology terms in blue, hematology terms in purple.</div>
+  </div>
+
+  <div class="soap-row soap-s">
+    <div class="soap-letter">S</div>
+    <div class="soap-body">
+      <h4>Subjective — the patient's words</h4>
+      <p>"I can't catch my breath." "My lips looked blue last night." Plus the cough, the ankle swelling, the feeling that climbing the stairs to her apartment takes more than it did six days ago. Report the denials too: "denies fever, denies chest pain."</p>
+      <div class="soap-terms">
+        <span class="soap-term">dyspnea</span>
+        <span class="soap-term">cyanosis</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="soap-row soap-o">
+    <div class="soap-letter">O</div>
+    <div class="soap-body">
+      <h4>Objective — what you measure</h4>
+      <p>RR 26 (tachypnea), SpO₂ 88% on RA (moderate hypoxia), HR 110 irregular (tachycardia persisting from W7). Bilateral fine crackles at the lung bases. No wheeze, no rhonchi, no stridor. CBC results with three abnormal values. All vitals with units, all findings with location.</p>
+      <div class="soap-terms">
+        <span class="soap-term">tachypnea</span>
+        <span class="soap-term">hypoxia</span>
+        <span class="soap-term">crackles</span>
+        <span class="soap-term">auscultation</span>
+        <span class="soap-term heme">erythrocyte</span>
+        <span class="soap-term heme">hemoglobin</span>
+        <span class="soap-term heme">hematocrit</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="soap-row soap-a">
+    <div class="soap-letter">A</div>
+    <div class="soap-body">
+      <h4>Assessment — your clinical thinking</h4>
+      <p>Primary: "Acute hypoxic respiratory distress — rule out pulmonary edema secondary to W7 arrhythmia vs. pulmonary embolism." Secondary: "New finding of anemia — likely iron-deficiency given the pattern." Connect last week's cardiac picture to this week's respiratory picture explicitly — the assessment is where longitudinal thinking becomes visible.</p>
+      <div class="soap-terms">
+        <span class="soap-term">hypoxia</span>
+        <span class="soap-term">pulmonary embolism</span>
+        <span class="soap-term heme">anemia</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="soap-row soap-p">
+    <div class="soap-letter">P</div>
+    <div class="soap-body">
+      <h4>Plan — what you do next</h4>
+      <p>Most urgent first: supplemental O₂ via nasal cannula. Then diagnostics: chest X-ray, D-dimer, CT angiogram if D-dimer elevated. Then workup: iron studies for the anemia, repeat echocardiogram to assess cardiac function. Cardiology follow-up from W7. Patient education on warning signs — when to call 911, when to return to urgent care.</p>
+      <div class="soap-terms">
+        <span class="soap-term">auscultation</span>
+        <span class="soap-term heme">phlebotomy</span>
+        <span class="soap-term heme">coagulation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LAB PREP ─── -->
+<section class="panel" id="lab">
+  <div class="section-head">
+    <div class="kicker">Wednesday · OR/Clinic Lab</div>
+    <h2>Phlebotomy Simulation Lab</h2>
+    <div class="sub">Wednesday's 80-minute lab. Three stations. You'll draw Ms. Carter's blood (simulated) and document it in EHR Entry 6.</div>
+  </div>
+
+  <div class="lab-callout">
+    <h3>This is the most hands-on lab of Phase 3.</h3>
+    <p>Real equipment: phlebotomy training arms, infant heel stick simulators, 21-gauge vacutainer needles, 23-gauge butterflies, color-coded tubes, real alcohol wipes and gauze. You'll rotate through three stations. No real venipuncture on humans — training arms only — but everything else is the real clinical workflow.</p>
+  </div>
+
+  <div class="safety-block">
+    <h4>⚠ Department Orientation — before any equipment comes out</h4>
+    <ul>
+      <li>Needles and lancets are CLINICAL SIMULATION TOOLS. Not toys. Not pranks. Never at another student or at yourself.</li>
+      <li>NEVER perform venipuncture on a real person in this lab. Training arms and infant simulators only.</li>
+      <li>Gloves on BEFORE touching any equipment. Off BEFORE touching your face, phone, or common surfaces.</li>
+      <li>ALL sharps go in the sharps container IMMEDIATELY after use. No "I'll put it there in a minute."</li>
+      <li>Access to the phlebotomy arms is tied to professional conduct. Real phlebotomists complete a department orientation before their first draw — you're doing the same.</li>
+    </ul>
+  </div>
+
+  <div class="stations-grid">
+    <div class="station-card a">
+      <div class="st-badge">Station A</div>
+      <h4>Adult Venipuncture</h4>
+      <p>Full 14-step vacutainer draw on the training arm. Use Ms. Carter's patient info for tube labels. Three tubes in correct order: light blue (D-dimer), gold SST (BMP), lavender EDTA (CBC).</p>
+      <div class="st-time">⏱ 25 min · rotate through 3 roles: phlebotomist, documenter, evaluator</div>
+    </div>
+    <div class="station-card b">
+      <div class="st-badge">Station B</div>
+      <h4>Infant Heel Stick</h4>
+      <p>9-step heel stick on the infant simulator. Safe zones only (medial/lateral plantar). Warming, cleansing, lancing, collecting onto microtainer or Guthrie card. Do NOT milk the heel.</p>
+      <div class="st-time">⏱ 20 min · kinesthetic precision + developmental awareness</div>
+    </div>
+    <div class="station-card c">
+      <div class="st-badge">Station C</div>
+      <h4>Tube ID + Chain of Custody</h4>
+      <p>Label 5 required fields on each tube. Match tubes to the lab requisition. Catch the ONE intentionally mislabeled tube built into the kit. Labeling is a safety step, not a clerical one.</p>
+      <div class="st-time">⏱ 15 min · accuracy + error-catching</div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3 style="color: var(--blue-dark);">Before You Arrive — know this cold</h3>
+    <p class="intro">Five things that will make Wednesday go smoothly. The lab document has the full detail; these are the anchors.</p>
+
+    <table class="data-table pulm">
+      <thead><tr><th>Know</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="term-cell">Antecubital fossa anatomy</td><td>Median cubital (1st choice), cephalic (2nd), basilic (last — near artery and nerve).</td></tr>
+        <tr><td class="term-cell">Order of draw</td><td>"Big Cats Shouldn't Hunt Extremely Gracefully." Yellow → Blue → Gold → Green → Lavender → Grey.</td></tr>
+        <tr><td class="term-cell">Tourniquet rule</td><td>Max 60 seconds. Too long = hemoconcentration = skewed results.</td></tr>
+        <tr><td class="term-cell">Safe heel zones</td><td>Medial and lateral plantar heel ONLY. Posterior curve is over the calcaneus — bone injury risk.</td></tr>
+        <tr><td class="term-cell">Required label fields</td><td>Patient name, MRN, DOB, date/time, collector initials. All 5 before you draw.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="content-section">
+    <h3 style="color: var(--blue-dark);">Lab Resources</h3>
+    <div class="resource-grid">
+      <a class="resource-card" href="#" onclick="alert('Full Phlebotomy Sim Lab document — attached in Toddle under P3 — Phlebotomy Sim Lab W8'); return false;">
+        <div class="rc-icon">📋</div>
+        <h5>Full Lab Document</h5>
+        <p>10-page guide with all procedures, safety rules, materials, and the 22-step HOSA skills checklist.</p>
+      </a>
+      <a class="resource-card" href="#" onclick="alert('Order of Draw reference card — printed and laminated at each station'); return false;">
+        <div class="rc-icon">🎨</div>
+        <h5>Order of Draw Card</h5>
+        <p>Tube color, additive, and test mapping. Laminated reference at every lab station.</p>
+      </a>
+      <a class="resource-card" href="#" onclick="alert('HOSA Phlebotomy competitive event info — see HOSA.org guidelines'); return false;">
+        <div class="rc-icon">🏆</div>
+        <h5>HOSA Phlebotomy</h5>
+        <p>This lab's skills directly map to the HOSA Phlebotomy competitive event. Top performers will be identified for the spring competition track.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GAMES REDIRECT ─── -->
+<section class="panel" id="games">
+  <div class="section-head">
+    <div class="kicker">Tuesday · Thursday · Friday</div>
+    <h2>Games &amp; Competition</h2>
+    <div class="sub">All six games are in the Phase 3 Game Library. Switch the week selector to W8 for pulm/heme-specific versions.</div>
+  </div>
+
+  <div class="games-redirect">
+    <h3>The <em>Floor is Open</em></h3>
+    <p>Six games tuned to Week 8 content — including a Breath Rate Showdown (tachypnea / bradypnea / normal) and a Pulm vs. Heme card sort. Pulse Check, Trash Ball Rounds, Vocabulary Relay, MCQ Sprint, Binary Sort.</p>
+    <a class="games-btn" href="phase3_game_library.html">Open Game Library →</a>
+  </div>
+
+  <div class="content-section">
+    <h3 style="color: var(--blue-dark);">Suggested use by day</h3>
+    <table class="data-table pulm">
+      <thead><tr><th>Day</th><th>Game</th><th>Why here</th></tr></thead>
+      <tbody>
+        <tr><td class="term-cell">Monday</td><td>Vocabulary Relay</td><td>First exposure to the 25 terms — pair work at the whiteboard. 10 minutes.</td></tr>
+        <tr><td class="term-cell">Tuesday</td><td>Pulm vs. Heme Sort</td><td>Category sort reinforces which terms live in which system. 5 minutes.</td></tr>
+        <tr><td class="term-cell">Wednesday (pre-lab)</td><td>Breath Rate Showdown</td><td>Movement break before the phlebotomy lab. 5 minutes.</td></tr>
+        <tr><td class="term-cell">Thursday</td><td>Trash Ball Rounds</td><td>High-energy team review. Teams: Ventilation, Perfusion, Hemoglobin. 15 minutes.</td></tr>
+        <tr><td class="term-cell">Friday</td><td>MCQ Sprint</td><td>Boards-style vignettes. Solo, silent, Boards prep. 10 minutes.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="f-title">DC International Teaching Hospital</div>
+  <div>HS1B Medical Terminology · Phase 3: Vital Signs and Flow · Week 8: Pulmonology + Hematology</div>
+  <div style="margin-top: 10px; font-size: 12px; opacity: 0.7;">Designed for the Academy of Health Sciences · DC International School · Mr. Patel</div>
+</footer>
+
+<script>
+  // ═══ TERMS DATA ═══
+  const TERMS = {
+    pulm: {
+      'Group A — Airway Anatomy': [
+        {t:'trachea', r:'trache/o (windpipe)', d:'The windpipe. Cartilaginous tube carrying air from the larynx to the bronchi.', c:'"Tracheal deviation noted to the right — pneumothorax ruled out by chest X-ray."'},
+        {t:'bronchus', r:'bronch/o, bronchi/o', d:'One of two main airways branching from the trachea. Each further branches into smaller bronchioles.', c:'"Right mainstem bronchus intubation — tube repositioned 2 cm cephalad."'},
+        {t:'alveolus', r:'alveol/o (small hollow)', d:'A microscopic air sac where gas exchange occurs between air and blood.', c:'"Alveolar collapse visible on CT — atelectasis in right lower lobe."'},
+        {t:'pleura', r:'pleur/o (rib, side)', d:'The double-layered serous membrane surrounding each lung.', c:'"Pleuritic chest pain with inspiration — pleural friction rub auscultated."'},
+        {t:'diaphragm', r:'diaphragm/o (partition)', d:'The primary muscle of breathing. Dome-shaped; contracts downward to pull air in.', c:'"Diaphragmatic excursion reduced on the left — phrenic nerve injury suspected."'},
+      ],
+      'Group B — Breath Sounds & Function': [
+        {t:'auscultation', r:'auscult/o (to listen) + -ation', d:'Clinical act of listening to internal body sounds using a stethoscope.', c:'"Auscultation reveals bilateral crackles in the lower lobes."'},
+        {t:'crackles', r:'English: crackling sound', d:'Discontinuous popping sounds from fluid or collapsed alveoli reopening. Also called rales.', c:'"Fine crackles auscultated bilaterally — consistent with pulmonary edema."'},
+        {t:'wheeze', r:'Middle English: to breathe hard', d:'Continuous high-pitched whistling sound from narrowed airways.', c:'"Expiratory wheeze bilateral — albuterol nebulizer administered."'},
+        {t:'dyspnea', r:'dys- (difficult) + -pnea (breathing)', d:'Shortness of breath. Patient\'s subjective feeling of difficult breathing.', c:'"Patient reports dyspnea on exertion — worsening over the past week."'},
+        {t:'tachypnea', r:'tachy- (fast) + -pnea (breathing)', d:'Abnormally rapid breathing. In adults, RR > 20/min.', c:'"Tachypnea noted at RR 28 — respiratory distress evaluation initiated."'},
+      ],
+      'Group C — Oxygenation & Pathology': [
+        {t:'hypoxia', r:'hypo- (under) + ox/o (oxygen) + -ia', d:'Low oxygen level in tissues. Measured by pulse oximetry (SpO₂ < 90%).', c:'"Hypoxia confirmed — SpO₂ 86% on room air — supplemental O₂ at 2L started."'},
+        {t:'cyanosis', r:'cyan/o (blue) + -osis', d:'Bluish discoloration of skin, lips, or nailbeds from inadequate oxygen in the blood.', c:'"Central cyanosis evident at the lips — stat ABG ordered."'},
+        {t:'pneumonia', r:'pneumon/o (lung) + -ia', d:'Infection of the lung tissue. Alveoli fill with fluid or pus.', c:'"Community-acquired pneumonia in the right lower lobe — antibiotics begun."'},
+        {t:'pulmonary embolism', r:'pulmon/o (lung) + embol/o (plug)', d:'A blood clot lodged in the pulmonary artery. Medical emergency.', c:'"Rule out pulmonary embolism — D-dimer elevated — CT angiogram ordered."'},
+        {t:'atelectasis', r:'atel/o (incomplete) + -ectasis (expansion)', d:'Collapse of part of the lung. Alveoli lose air and cannot exchange gas.', c:'"Post-operative atelectasis in the left lower lobe — incentive spirometry encouraged."'},
+      ],
+    },
+    heme: {
+      'Group D — Blood Components & CBC': [
+        {t:'erythrocyte', r:'erythr/o (red) + -cyte (cell)', d:'Red blood cell. Carries oxygen via hemoglobin. Normal 4.5–5.5 million/µL.', c:'"Low erythrocyte count at 3.8 million — anemia workup initiated."'},
+        {t:'leukocyte', r:'leuk/o (white) + -cyte (cell)', d:'White blood cell. Fights infection. Normal 4,000–11,000/µL.', c:'"Leukocytosis at 18,000 — bacterial infection suspected."'},
+        {t:'thrombocyte', r:'thromb/o (clot) + -cyte (cell)', d:'Platelet. Cell fragment that initiates clotting. Normal 150k–450k/µL.', c:'"Thrombocytopenia at 85,000 — avoid invasive procedures."'},
+        {t:'hemoglobin', r:'hem/o (blood) + globin (protein)', d:'Iron-containing protein in RBCs that binds oxygen. Normal 12–16 g/dL (F).', c:'"Hemoglobin 9.2 — below normal — iron studies ordered."'},
+        {t:'hematocrit', r:'hemat/o (blood) + crit/o (to separate)', d:'Percentage of blood volume made up of RBCs. Normal 36–46% (F).', c:'"Hematocrit 28% — moderate anemia — transfusion considered."'},
+      ],
+      'Group E — Hematology Pathology': [
+        {t:'anemia', r:'an- (without) + -emia (blood)', d:'Deficiency of red blood cells or hemoglobin — decreased O₂-carrying capacity.', c:'"Iron-deficiency anemia confirmed — ferritin low — oral iron begun."'},
+        {t:'thrombosis', r:'thromb/o + -osis', d:'Formation of a blood clot INSIDE a vessel. DVT = deep vein thrombosis.', c:'"Deep vein thrombosis confirmed in right calf — anticoagulation started."'},
+        {t:'embolism', r:'embol/o (plug) + -ism', d:'A MOVING clot (or other material) that lodges in a distant vessel.', c:'"Pulmonary embolism suspected — clot traveled from calf DVT to lung."'},
+        {t:'phlebotomy', r:'phleb/o (vein) + -tomy (cutting into)', d:'Procedure of drawing blood from a vein, usually for lab testing.', c:'"Phlebotomy performed at antecubital vein — 3 tubes drawn without complication."'},
+        {t:'coagulation', r:'coagul/o (to clot) + -ation', d:'Process by which blood changes from liquid to gel, forming a clot.', c:'"Coagulation panel within normal limits — PT/INR 1.0."'},
+      ],
+    },
+  };
+
+  // ═══ NAV ═══
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ═══ RENDER TERMS ═══
+  const termsContainer = document.getElementById('terms-container');
+  ['pulm', 'heme'].forEach(system => {
+    Object.entries(TERMS[system]).forEach(([group, items]) => {
+      const grp = document.createElement('div');
+      grp.className = 'terms-group ' + system;
+      grp.innerHTML = `<h4>${group}</h4><div class="terms-grid">${items.map(i => `
+        <div class="term-card">
+          <div class="t-name">${i.t}</div>
+          <div class="t-root">${i.r}</div>
+          <div class="t-def">${i.d}</div>
+          <div class="t-clinical">${i.c}</div>
+        </div>`).join('')}</div>`;
+      termsContainer.appendChild(grp);
+    });
+  });
+</script>
+
+</body>
+</html>
